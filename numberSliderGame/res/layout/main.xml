@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/main"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="1.0" >
+  <TextView
+      android:layout_width="match_parent"
+      android:layout_height="0dp"
+      android:layout_weight="0.1"
+      android:paddingTop="20dp"
+      android:paddingLeft="20dp"
+      android:paddingRight="20dp"
+      android:background="@drawable/title" />
+  <android.support.v7.widget.GridLayout
+      xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:app="http://schemas.android.com/apk/res-auto"
+      android:id="@+id/game_board"
+      android:layout_width="match_parent"
+      android:layout_height="0dp"
+      android:paddingTop="20dp"
+      android:paddingBottom="20dp"
+      android:paddingLeft="10dp"
+      android:paddingRight="10dp"
+      android:gravity="right"
+      android:layout_weight="0.7"/>
+  <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="0dp"
+      android:layout_weight="0.1"
+      android:weightSum="10.0" >
+    <TextView
+	style="@style/txt"
+	android:layout_weight="3"
+	android:gravity="top|right"
+	android:text="Moves: " />
+    <TextView
+	android:id="@+id/moves"
+	style="@style/txt"
+	android:gravity="left|top"
+	android:layout_weight="2"
+	android:text="0"/>
+    <TextView
+	android:id="@+id/optimal_text"
+	style="@style/txt"
+	android:gravity="top|right"
+	android:layout_weight="3"
+	android:text="Optimal: "/>
+    <TextView
+	android:id="@+id/optimal"
+	style="@style/txt"
+	android:gravity="left|top"
+	android:layout_weight="2" />
+  </LinearLayout>
+  <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="0dp"
+      android:layout_weight="0.1"
+      android:weightSum="17.0" >
+    <Button
+	android:id="@+id/undo"
+	android:text="Undo"
+	style="@style/btn_normal"
+	android:layout_weight="4" />
+    <Button
+	android:id="@+id/solve"
+	android:text="Solve"
+	style="@style/btn_normal"
+	android:layout_weight="4" />
+    <Button
+	android:id="@+id/scramble"
+	style="@style/btn_normal"
+	android:text="Scramble"
+	android:layout_weight="5" />
+    <Button
+	android:id="@+id/toggle"
+	android:text="4x4"
+	style="@style/btn_normal"
+	android:layout_weight="4" />
+  </LinearLayout>
+  <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="0dp"
+      android:layout_weight="0.05" />
+</LinearLayout>
+

@@ -1,0 +1,10 @@
+# view res/layout/main.xml #generated:17
+# view res/layout/main_wide.xml #generated:35
+-keep class android.support.v7.widget.GridLayout { <init>(...); }
+
+# view res/layout/board_cell.xml #generated:2
+-keep class mindsnacks.challenges.numberslider.GameButton { <init>(...); }
+
+# view AndroidManifest.xml #generated:10
+-keep class mindsnacks.challenges.numberslider.numberSliderActivity { <init>(...); }
+
