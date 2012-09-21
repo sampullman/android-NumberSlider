@@ -6,6 +6,7 @@
 /home/sam/Desktop/git/mindsnacks-challenges/numberSliderGame/res/drawable-mdpi/icon.png \
 /home/sam/Desktop/git/mindsnacks-challenges/numberSliderGame/res/drawable-hdpi/icon.png \
 /home/sam/Desktop/git/mindsnacks-challenges/numberSliderGame/res/values/styles.xml \
+/home/sam/Desktop/git/mindsnacks-challenges/numberSliderGame/res/values/attrs.xml \
 /home/sam/Desktop/git/mindsnacks-challenges/numberSliderGame/res/values/strings.xml \
 /home/sam/Desktop/git/mindsnacks-challenges/numberSliderGame/res/layout/main_wide.xml \
 /home/sam/Desktop/git/mindsnacks-challenges/numberSliderGame/res/layout/board_row.xml \

@@ -38,7 +38,6 @@ public class SolveGameTask extends AsyncTask<String,Integer,Boolean> {
 	if(solved && context.game.solution.size() > 0) {
 	    Move m = context.game.solution.get(0);
 	    context.performMove(m.to.pX, m.to.pY, false, false, 0);
-	    context.setMoves(0);
 	    if(context.gameDim == 3)
 		context.opt.setText("0");
 	    context.game.scrambled = false;

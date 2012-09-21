@@ -1,5 +1,7 @@
 package mindsnacks.challenges.numberslider;
 
+import com.google.ads.*;
+
 import mindsnacks.challenges.numberslider.Game.Point;
 import mindsnacks.challenges.numberslider.Game.Move;
 
@@ -114,7 +116,7 @@ public class numberSliderActivity extends Activity {
 	    public void onClick(View v) {
 		if(game.userMoves.size() > 0) {
 		    Move m = game.userMoves.remove(game.userMoves.size() - 1);
-		    performMove(m.from.pX, m.from.pY, true, true, -1);
+		    performMove(m.from.pX, m.from.pY, false, true, -1);
 		}
 	    }
 	};
@@ -282,6 +284,7 @@ public class numberSliderActivity extends Activity {
 	    -If seqNum is set, the solution is being executed. After each animation completes
 	        the next move in the sequence will occur. */
     public void performMove(int x, int y, boolean saveMove, boolean undo, int seqNum) {
+	Log.v("numberSlide", "clicked");
 	if(game.isLegalMove(x, y)) {
 	    Point dir;
 	    int xOffset=0, yOffset=0;
@@ -314,7 +317,7 @@ public class numberSliderActivity extends Activity {
 	    String newText;
 	    int moveDiff = undo ? -1 : 1;
 	    while(true) {
-		if(saveMove) moves += moveDiff;
+		moves += moveDiff;
 		nextP = p.add(dir);
 		if(nextP.equals(endP)) {
 		    empty = true;
@@ -330,10 +333,8 @@ public class numberSliderActivity extends Activity {
 		if(empty) break;
 	    }
 	    game.performMove(x, y, saveMove);
-	    if(saveMove) {
-		TextView m = (TextView) findViewById(R.id.moves);
-		m.setText(Integer.toString(moves));
-	    }
+	    TextView m = (TextView) findViewById(R.id.moves);
+	    m.setText(Integer.toString(moves));
 	} else {
 	    Log.v("click", "illegal move: " + x + ", " + y);
 	}
