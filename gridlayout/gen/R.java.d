@@ -1,4 +1,4 @@
-/home/sam/Desktop/git/mindsnacks-challenges/gridlayout/gen/android/support/v7/gridlayout/R.java \
- : /home/sam/Desktop/git/mindsnacks-challenges/gridlayout/res/values/dimens.xml \
-/home/sam/Desktop/git/mindsnacks-challenges/gridlayout/res/values/attrs.xml \
-/home/sam/Desktop/git/mindsnacks-challenges/gridlayout/bin/AndroidManifest.xml \
+/home/sam/Desktop/git/android/numberSliderGame/gridlayout/gen/android/support/v7/gridlayout/R.java \
+ : /home/sam/Desktop/git/android/numberSliderGame/gridlayout/res/values/dimens.xml \
+/home/sam/Desktop/git/android/numberSliderGame/gridlayout/res/values/attrs.xml \
+/home/sam/Desktop/git/android/numberSliderGame/gridlayout/bin/AndroidManifest.xml \
