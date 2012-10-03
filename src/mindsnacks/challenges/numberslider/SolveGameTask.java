@@ -1,6 +1,6 @@
-package mindsnacks.challenges.numberslider;
+package com.threeDBJ.numberSlider;
 
-import mindsnacks.challenges.numberslider.Game.Move;
+import com.threeDBJ.numberSlider.Game.Move;
 
 import android.os.AsyncTask;
 import android.app.ProgressDialog;

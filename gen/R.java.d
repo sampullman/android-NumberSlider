@@ -1,5 +1,4 @@
-/home/sam/Desktop/git/android/numberSliderGame/gen/mindsnacks/challenges/numberslider/R.java \
-/home/sam/Desktop/git/android/numberSliderGame/gen/android/support/v7/gridlayout/R.java \
+/home/sam/Desktop/git/android/numberSliderGame/gen/com/threeDBJ/numberSlider/R.java \
  : /home/sam/Desktop/git/android/numberSliderGame/gridlayout/res/values/dimens.xml \
 /home/sam/Desktop/git/android/numberSliderGame/gridlayout/res/values/attrs.xml \
 /home/sam/Desktop/git/android/numberSliderGame/res/drawable-mdpi/puppy.jpg \
@@ -13,7 +12,6 @@
 /home/sam/Desktop/git/android/numberSliderGame/res/drawable-hdpi/icon.png \
 /home/sam/Desktop/git/android/numberSliderGame/res/menu/options_menu.xml \
 /home/sam/Desktop/git/android/numberSliderGame/res/values/styles.xml \
-/home/sam/Desktop/git/android/numberSliderGame/res/values/attrs.xml \
 /home/sam/Desktop/git/android/numberSliderGame/res/values/strings.xml \
 /home/sam/Desktop/git/android/numberSliderGame/res/layout/main_wide.xml \
 /home/sam/Desktop/git/android/numberSliderGame/res/layout/board_row.xml \
@@ -22,7 +20,7 @@
 /home/sam/Desktop/git/android/numberSliderGame/res/layout/board_cell.xml \
 /home/sam/Desktop/git/android/numberSliderGame/res/layout/preset.xml \
 /home/sam/Desktop/git/android/numberSliderGame/res/layout/dialog.xml \
-/home/sam/Desktop/git/android/numberSliderGame/res/layout/main.xml \
+/home/sam/Desktop/git/android/numberSliderGame/res/layout/main_portrait.xml \
 /home/sam/Desktop/git/android/numberSliderGame/res/layout/preset_wide.xml \
 /home/sam/Desktop/git/android/numberSliderGame/res/layout/empty_cell.xml \
 /home/sam/Desktop/git/android/numberSliderGame/bin/res/drawable-mdpi/title.png \

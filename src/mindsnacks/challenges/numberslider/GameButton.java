@@ -1,4 +1,4 @@
-package mindsnacks.challenges.numberslider;
+package com.threeDBJ.numberSlider;
 
 import android.widget.Button;
 import android.content.Context;

@@ -1,4 +1,4 @@
-package mindsnacks.challenges.numberslider;
+package com.threeDBJ.numberSlider;
 
 import android.os.Parcelable;
 import android.os.Parcel;

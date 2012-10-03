@@ -1,4 +1,4 @@
-package mindsnacks.challenges.numberslider;
+package com.threeDBJ.numberSlider;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -23,6 +23,7 @@ import android.util.Log;
 public class DirectoryBrowser extends Activity {
 
     String ROOT = Environment.getExternalStorageDirectory().getAbsolutePath();
+    //String ROOT = "/mnt/";
     String path = ROOT;
 
     FileFilter filter;
@@ -112,7 +113,8 @@ public class DirectoryBrowser extends Activity {
 	    files.add(fileList[i]);
 	}
 	list.clear();
-	list.addAll(items);
+	for(String item : items)
+	    list.add(item);
 	label.setText("Showing directory: " + path);
     }
 

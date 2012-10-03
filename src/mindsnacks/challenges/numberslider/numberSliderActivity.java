@@ -1,9 +1,7 @@
-package mindsnacks.challenges.numberslider;
+package com.threeDBJ.numberSlider;
 
-import com.google.ads.*;
-
-import mindsnacks.challenges.numberslider.Game.Point;
-import mindsnacks.challenges.numberslider.Game.Move;
+import com.threeDBJ.numberSlider.Game.Point;
+import com.threeDBJ.numberSlider.Game.Move;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -69,7 +67,7 @@ public class numberSliderActivity extends Activity {
 	Configuration config = this.getResources().getConfiguration();
 	this.orientation = config.orientation;
 	if(orientation == 1) {
-            setContentView(R.layout.main);
+            setContentView(R.layout.main_portrait);
 	} else if(orientation == 2) {
             setContentView(R.layout.main_wide);
 	}
@@ -79,7 +77,7 @@ public class numberSliderActivity extends Activity {
 	    bgMode = savedInstanceState.getInt("bgMode");
 	    if(bgMode == EXTERNAL) {
 		path = savedInstanceState.getString("path");
-		image = BitmapFactory.decodeFile(path);
+		image = getScaledBitmap(path);
 	    } else if(bgMode == PRESET) {
 		imageRes = savedInstanceState.getInt("imageRes");
 		image = BitmapFactory.decodeResource(getResources(), imageRes);
@@ -129,7 +127,7 @@ public class numberSliderActivity extends Activity {
         super.onConfigurationChanged(config);
 	this.orientation = config.orientation;
         if(orientation == 1) {
-            setContentView(R.layout.main);
+            setContentView(R.layout.main_portrait);
         } else if(orientation == 2) {
             setContentView(R.layout.main_wide);
 	}
@@ -158,8 +156,8 @@ public class numberSliderActivity extends Activity {
 	gameBoard = (GridLayout) findViewById(R.id.game_board);
 	move_num = (TextView) findViewById(R.id.moves);
 	toggle = (Button) findViewById(R.id.toggle);
-
 	// Set up click handlers
+	Log.e("fuck", ""+R.id.undo);
 	Button b = (Button) findViewById(R.id.undo);
 	b.setOnClickListener(undoListener);
 	b = (Button) findViewById(R.id.solve);
@@ -431,6 +429,7 @@ public class numberSliderActivity extends Activity {
 
     public void setBackground(Bitmap image) {
 	this.image = image;
+	Log.e("GC real size", image.getWidth() + " "+image.getHeight());
 	GameButton b;
 	double w = ((double)image.getWidth()) / gameDim;
 	double h = ((double)image.getHeight()) / gameDim;
@@ -466,12 +465,29 @@ public class numberSliderActivity extends Activity {
 	}
     }
 
+    public Bitmap getScaledBitmap(String path) {
+	BitmapFactory.Options options = new BitmapFactory.Options();
+	options.inJustDecodeBounds = true;
+	BitmapFactory.decodeFile(path, options);
+	float h = (float)options.outHeight;
+	float w = (float)options.outWidth;
+	float ratio;
+	Log.e("GC", h+" "+w);
+	if(h > w) {
+	    options.inSampleSize = Math.round(h / 480f);
+	} else {
+	    options.inSampleSize = Math.round(w / 480f);
+	}
+	options.inJustDecodeBounds = false;
+	return BitmapFactory.decodeFile(path, options);
+    }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 	/* Retrieve background bitmap from file path */
 	if(resultCode == EXTERNAL) {
 	    path = data.getExtras().getString("path");
-	    Bitmap image = BitmapFactory.decodeFile(path);
+	    Bitmap image = getScaledBitmap(path);
 	    setBackground(image);
 	    bgMode = resultCode;
 	/* Retrieve bitmap from drawable resource */
@@ -502,17 +518,14 @@ public class numberSliderActivity extends Activity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 	Intent intent;
-	switch (item.getItemId()) {
-        case R.id.choose_phone:
+	if(item.getItemId() == R.id.choose_phone) {
 	    intent = new Intent(this, DirectoryBrowser.class);
 	    intent.putExtra("filter", new ImageFileFilter());
 	    startActivityForResult(intent, 0);
-	    break;
-	case R.id.choose_preset:
+	} else if(item.getItemId() == R.id.choose_preset) {
 	    intent = new Intent(this, PresetChooser.class);
 	    startActivityForResult(intent, 1);
-	    break;
-        default:
+	} else {
             return super.onOptionsItemSelected(item);
         }
         return true;

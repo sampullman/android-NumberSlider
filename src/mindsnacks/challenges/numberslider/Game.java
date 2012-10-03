@@ -1,4 +1,4 @@
-package mindsnacks.challenges.numberslider;
+package com.threeDBJ.numberSlider;
 
 import java.util.ArrayList;
 import java.util.PriorityQueue;

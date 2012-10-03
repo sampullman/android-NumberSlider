@@ -1,22 +1,19 @@
-# view res/layout/main.xml #generated:19
+# view res/layout/main_portrait.xml #generated:19
 # view res/layout/main_wide.xml #generated:35
 -keep class android.support.v7.widget.GridLayout { <init>(...); }
 
 # view AndroidManifest.xml #generated:32
 -keep class com.google.ads.AdActivity { <init>(...); }
 
-# view res/layout/main.xml #generated:85
--keep class com.google.ads.AdView { <init>(...); }
-
 # view AndroidManifest.xml #generated:22
--keep class mindsnacks.challenges.numberslider.DirectoryBrowser { <init>(...); }
+-keep class com.threeDBJ.numberSlider.DirectoryBrowser { <init>(...); }
 
 # view res/layout/board_cell.xml #generated:2
--keep class mindsnacks.challenges.numberslider.GameButton { <init>(...); }
+-keep class com.threeDBJ.numberSlider.GameButton { <init>(...); }
 
 # view AndroidManifest.xml #generated:27
--keep class mindsnacks.challenges.numberslider.PresetChooser { <init>(...); }
+-keep class com.threeDBJ.numberSlider.PresetChooser { <init>(...); }
 
 # view AndroidManifest.xml #generated:12
--keep class mindsnacks.challenges.numberslider.numberSliderActivity { <init>(...); }
+-keep class com.threeDBJ.numberSlider.numberSliderActivity { <init>(...); }
 

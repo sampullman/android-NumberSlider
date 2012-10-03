@@ -1,5 +1,5 @@
 /** Automatically generated file. DO NOT MODIFY */
-package android.support.v7.gridlayout;
+package com.threeDBJ.numberSlider;
 
 public final class BuildConfig {
     public final static boolean DEBUG = false;
