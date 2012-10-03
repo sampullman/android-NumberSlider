@@ -23,7 +23,4 @@
 /home/sam/Desktop/git/android/numberSliderGame/res/layout/main_portrait.xml \
 /home/sam/Desktop/git/android/numberSliderGame/res/layout/preset_wide.xml \
 /home/sam/Desktop/git/android/numberSliderGame/res/layout/empty_cell.xml \
-/home/sam/Desktop/git/android/numberSliderGame/bin/res/drawable-mdpi/title.png \
-/home/sam/Desktop/git/android/numberSliderGame/bin/res/drawable-mdpi/icon.png \
-/home/sam/Desktop/git/android/numberSliderGame/bin/res/drawable-hdpi/icon.png \
 /home/sam/Desktop/git/android/numberSliderGame/bin/AndroidManifest.xml \
