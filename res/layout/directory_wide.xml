@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    android:weightSum="1.0" >
+  <ListView
+      android:id="@+id/dir_list"
+      android:layout_width="0dp"
+      android:layout_height="match_parent"
+      android:layout_weight="0.7" >
+  </ListView>
+  <LinearLayout
+      android:layout_width="0dp"
+      android:layout_height="match_parent"
+      android:orientation="vertical"
+      android:layout_weight="0.3"
+      android:weightSum="1.0" >
+    <TextView
+	android:id="@+id/dir_label"
+	android:layout_width="match_parent"
+	android:layout_height="0dp"
+	android:layout_weight="0.3"
+	android:gravity="center"
+	android:textSize="16sp" />
+    <Button
+	android:id="@+id/dir_back"
+	android:layout_width="match_parent"
+	android:layout_height="0dp"
+	android:layout_weight="0.15"
+	android:textSize="18sp"
+	android:textStyle="bold"
+	android:text="Back" />
+    <Button
+	android:id="@+id/dir_root"
+	android:layout_width="match_parent"
+	android:layout_height="0dp"
+	android:layout_weight="0.15"
+	android:textSize="18sp"
+	android:textStyle="bold"
+	android:text="Root" />
+    <Button
+	android:id="@+id/dir_cancel"
+	android:layout_width="match_parent"
+	android:layout_height="0dp"
+	android:layout_weight="0.15"
+	android:textSize="18sp"
+	android:textStyle="bold"
+	android:text="Cancel" />
+    <TextView
+	android:layout_width="match_parent"
+	android:layout_height="0dp"
+	android:layout_weight="0.25"
+	android:textSize="16sp" />
+  </LinearLayout>
+  </LinearLayout>
