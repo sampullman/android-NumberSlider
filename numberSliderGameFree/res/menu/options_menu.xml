@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+  <item android:id="@+id/choose_phone"
+        android:title="Choose Image from Phone" />
+  <item android:id="@+id/choose_preset"
+        android:title="Choose Preset Image" />
+  <item android:id="@+id/buy"
+        android:title="Buy Ad Free Version" />
+</menu>
