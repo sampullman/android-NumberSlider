@@ -4,37 +4,38 @@ import com.threeDBJ.numberSlider.Game.Point;
 import com.threeDBJ.numberSlider.Game.Move;
 
 import android.app.Activity;
-import android.os.Bundle;
+import android.app.Dialog;
 
-import android.widget.LinearLayout;
-import android.view.ViewGroup.LayoutParams;
-import android.widget.RelativeLayout;
-import android.widget.Button;
-import android.widget.TextView;
-import android.widget.Toast;
-import android.view.View;
-import android.view.Display;
-import android.view.Gravity;
-import android.view.ViewGroup;
-import android.view.LayoutInflater;
-import android.view.View.OnClickListener;
-import android.view.animation.TranslateAnimation;
-import android.view.animation.Animation.AnimationListener;
-import android.view.animation.Animation;
 import android.content.Context;
 import android.content.Intent;
-import android.os.AsyncTask;
-import android.app.Dialog;
-import android.content.res.Configuration;
 import android.content.pm.ActivityInfo;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.MenuInflater;
-
+import android.content.res.Configuration;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.BitmapFactory;
 import android.graphics.Bitmap;
+import android.os.AsyncTask;
+import android.os.Bundle;
+import android.view.animation.Animation;
+import android.view.animation.Animation.AnimationListener;
+import android.view.animation.TranslateAnimation;
+import android.view.Display;
+import android.view.Gravity;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.ViewGroup.LayoutParams;
+import android.view.LayoutInflater;
+import android.view.View.OnClickListener;
+import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.actionbarsherlock.app.ActionBar;
+import com.actionbarsherlock.app.SherlockActivity;
+import com.actionbarsherlock.view.Menu;
+import com.actionbarsherlock.view.MenuItem;
 
 import android.support.v7.widget.GridLayout;
 
@@ -42,9 +43,9 @@ import java.util.ArrayList;
 
 import android.util.Log;
 
-public class numberSliderActivity extends Activity {
+public class numberSliderActivity extends SherlockActivity {
 
-    static int EXTERNAL=1,PRESET=2,DEFAULT=3;
+    static final int EXTERNAL=1,PRESET=2,DEFAULT=3;
 
     Game game;
     GameButton[][] board;
@@ -63,12 +64,19 @@ public class numberSliderActivity extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR);
+
+	ActionBar bar = getSupportActionBar();
+	bar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
+
 	Configuration config = this.getResources().getConfiguration();
 	this.orientation = config.orientation;
 	if(orientation == 1) {
+	    bar.setDisplayShowHomeEnabled(false);
+	    bar.setDisplayShowTitleEnabled(false);
             setContentView(R.layout.main_portrait);
 	} else if(orientation == 2) {
+	    bar.setDisplayShowHomeEnabled(true);
+	    bar.setDisplayShowTitleEnabled(true);
             setContentView(R.layout.main_wide);
 	}
 	setupUI();
@@ -93,7 +101,6 @@ public class numberSliderActivity extends Activity {
       	}
 	updateToggleText();
 	setMoves(0);
-	Log.e("numberSlide", "onCreate");
     }
 
     @Override
@@ -126,9 +133,14 @@ public class numberSliderActivity extends Activity {
     public void onConfigurationChanged(Configuration config) {
         super.onConfigurationChanged(config);
 	this.orientation = config.orientation;
+	ActionBar bar = getSupportActionBar();
         if(orientation == 1) {
+	    bar.setDisplayShowHomeEnabled(false);
+	    bar.setDisplayShowTitleEnabled(false);
             setContentView(R.layout.main_portrait);
         } else if(orientation == 2) {
+	    bar.setDisplayShowHomeEnabled(true);
+	    bar.setDisplayShowTitleEnabled(true);
             setContentView(R.layout.main_wide);
 	}
 	setupUI();
@@ -509,25 +521,28 @@ public class numberSliderActivity extends Activity {
     /* Inflates the options menu. TODO -convert menu stuff to action bar */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.options_menu, menu);
-        return true;
+	menu.add(0, PRESET, 0, "Preset Image")
+	    .setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM | MenuItem.SHOW_AS_ACTION_WITH_TEXT);
+	menu.add(0, EXTERNAL, 0, "Custom Image")
+	    .setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM | MenuItem.SHOW_AS_ACTION_WITH_TEXT);
+	return true;
     }
 
     /* Handles the selection of a menu item. */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 	Intent intent;
-	if(item.getItemId() == R.id.choose_phone) {
+	switch (item.getItemId()) {
+	case EXTERNAL:
 	    intent = new Intent(this, DirectoryBrowser.class);
 	    intent.putExtra("filter", new ImageFileFilter());
 	    startActivityForResult(intent, 0);
-	} else if(item.getItemId() == R.id.choose_preset) {
+	    break;
+	case PRESET:
 	    intent = new Intent(this, PresetChooser.class);
 	    startActivityForResult(intent, 1);
-	} else {
-            return super.onOptionsItemSelected(item);
-        }
+	    break;
+	}
         return true;
     }
 }

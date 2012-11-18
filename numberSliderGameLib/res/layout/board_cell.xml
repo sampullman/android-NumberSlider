@@ -9,4 +9,5 @@
     android:layout_height="match_parent"
     android:textSize="24sp"
     android:background="@drawable/cell"
+    android:textColor="?android:attr/textColorPrimaryInverse"
     android:textStyle="bold" />

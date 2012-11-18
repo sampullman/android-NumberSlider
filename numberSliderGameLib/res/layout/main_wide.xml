@@ -10,27 +10,7 @@
       android:orientation="horizontal"
       android:layout_width="match_parent"
       android:layout_height="0dp"
-      android:layout_weight="0.1"
-      android:weightSum="1.0" >
-    <TextView
-	android:layout_width="0dp"
-	android:layout_height="match_parent"
-	android:layout_weight="0.1" />
-    <TextView
-	android:layout_width="0dp"
-	android:layout_height="match_parent"
-	android:layout_weight="0.5"
-	android:background="@drawable/title" />
-    <TextView
-	android:layout_width="0dp"
-	android:layout_height="match_parent"
-	android:layout_weight="0.4" />
-  </LinearLayout>
-  <LinearLayout
-      android:orientation="horizontal"
-      android:layout_width="match_parent"
-      android:layout_height="0dp"
-      android:layout_weight="0.9"
+      android:layout_weight="1.0"
       android:weightSum="1.0" >
     <android.support.v7.widget.GridLayout
 	xmlns:android="http://schemas.android.com/apk/res/android"
@@ -93,13 +73,13 @@
 	    style="@style/txt"
 	    android:id="@+id/optimal_text"
 	    android:gravity="center_vertical|right"
-	    android:layout_weight="0.8"
+	    android:layout_weight="0.75"
 	    android:text="Optimal: "/>
 	<TextView
 	    style="@style/txt"
 	    android:id="@+id/optimal"
 	    android:gravity="left|center_vertical"
-	    android:layout_weight="0.2" />
+	    android:layout_weight="0.25" />
       </LinearLayout>
     </LinearLayout>
   </LinearLayout>

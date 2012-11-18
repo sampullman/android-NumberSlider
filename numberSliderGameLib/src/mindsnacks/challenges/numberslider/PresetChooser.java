@@ -3,6 +3,7 @@ package com.threeDBJ.numberSlider;
 import android.app.Activity;
 import android.os.Bundle;
 
+import android.graphics.Typeface;
 import android.widget.Button;
 import android.widget.ArrayAdapter;
 import android.widget.AdapterView;
@@ -18,7 +19,14 @@ import java.util.ArrayList;
 
 import android.util.Log;
 
-public class PresetChooser extends Activity {
+import com.actionbarsherlock.app.ActionBar;
+import com.actionbarsherlock.app.SherlockActivity;
+import com.actionbarsherlock.view.Menu;
+import com.actionbarsherlock.view.MenuItem;
+
+public class PresetChooser extends SherlockActivity {
+
+    static final int BROWSE_PHONE=1, CANCEL=2;
 
     static String[] labels = new String[] { "Default", "Kitten", "Puppy", "Koala", "Swans", "Mona Lisa" };
     static int[] drawables = new int[] { 0, R.drawable.kitten, R.drawable.puppy, R.drawable.koala,
@@ -31,12 +39,13 @@ public class PresetChooser extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-	Configuration config = this.getResources().getConfiguration();
-	if(config.orientation == 1) {
-            setContentView(R.layout.preset);
-        } else if(config.orientation == 2) {
-            setContentView(R.layout.preset_wide);
-	}
+
+	ActionBar bar = getSupportActionBar();
+	bar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
+	bar.setDisplayShowHomeEnabled(false);
+	bar.setDisplayShowTitleEnabled(false);
+
+	setContentView(R.layout.preset);
 
 	list = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,
 					android.R.id.text1, labels);
@@ -46,23 +55,41 @@ public class PresetChooser extends Activity {
     @Override
     public void onConfigurationChanged(Configuration config) {
         super.onConfigurationChanged(config);
-	if(config.orientation == 1) {
-            setContentView(R.layout.preset);
-        } else if(config.orientation == 2) {
-            setContentView(R.layout.preset_wide);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+	menu.add(0, BROWSE_PHONE, 0, "Browse Phone")
+	    .setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM | MenuItem.SHOW_AS_ACTION_WITH_TEXT);
+	menu.add(0, CANCEL, 0, "Cancel")
+	    .setIcon(R.drawable.ic_menu_close_clear_cancel)
+	    .setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM | MenuItem.SHOW_AS_ACTION_WITH_TEXT);
+	return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+	Intent intent;
+	switch (item.getItemId()) {
+	case BROWSE_PHONE:
+	    intent = new Intent(PresetChooser.this, DirectoryBrowser.class);
+	    intent.putExtra("filter", new ImageFileFilter());
+	    startActivityForResult(intent, 1);
+	    break;
+	case CANCEL:
+	    setResult(0);
+	    finish();
+	    break;
 	}
-	setupUI();
+	return true;
     }
 
     public void setupUI() {
+	Typeface title = Typeface.createFromAsset(getAssets(), "Roboto-LightItalic.ttf");
 	label = (TextView)findViewById(R.id.preset_label);
+	label.setTypeface(title);
 	listView = (ListView)findViewById(R.id.preset_list);
 	listView.setAdapter(list);
-
-	Button b = (Button)findViewById(R.id.preset_dir);
-	b.setOnClickListener(dirListener);
-	b = (Button)findViewById(R.id.preset_cancel);
-	b.setOnClickListener(cancelListener);
 
 	listView.setOnItemClickListener(listListener);
     }
@@ -78,21 +105,6 @@ public class PresetChooser extends Activity {
 		    intent.putExtra("resource", drawables[position]);
 		    setResult(2, intent);
 		}
-		finish();
-	    }
-	};
-
-    private OnClickListener dirListener = new OnClickListener() {
-	    public void onClick(View v) {
-		Intent intent = new Intent(PresetChooser.this, DirectoryBrowser.class);
-		intent.putExtra("filter", new ImageFileFilter());
-		startActivityForResult(intent, 1);
-	    }
-	};
-
-    private OnClickListener cancelListener = new OnClickListener() {
-	    public void onClick(View v) {
-		setResult(0);
 		finish();
 	    }
 	};

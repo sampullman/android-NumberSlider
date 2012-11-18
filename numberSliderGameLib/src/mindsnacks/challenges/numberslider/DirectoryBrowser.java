@@ -20,7 +20,14 @@ import java.util.ArrayList;
 
 import android.util.Log;
 
-public class DirectoryBrowser extends Activity {
+import com.actionbarsherlock.app.ActionBar;
+import com.actionbarsherlock.app.SherlockActivity;
+import com.actionbarsherlock.view.Menu;
+import com.actionbarsherlock.view.MenuItem;
+
+public class DirectoryBrowser extends SherlockActivity {
+
+    static final int BACK_ID=1, ROOT_ID=2, CANCEL_ID=3;
 
     String ROOT = Environment.getExternalStorageDirectory().getAbsolutePath();
     //String ROOT = "/mnt/";
@@ -38,6 +45,12 @@ public class DirectoryBrowser extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+	ActionBar bar = getSupportActionBar();
+	bar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
+	bar.setDisplayShowHomeEnabled(false);
+	bar.setDisplayShowTitleEnabled(false);
+
 	String state = Environment.getExternalStorageState();
 	if(!(Environment.MEDIA_MOUNTED.equals(state) ||
 	     Environment.MEDIA_MOUNTED_READ_ONLY.equals(state))) {
@@ -45,12 +58,7 @@ public class DirectoryBrowser extends Activity {
 	    finish();
 	}
 
-	Configuration config = this.getResources().getConfiguration();
-	if(config.orientation == 1) {
-            setContentView(R.layout.directory);
-        } else if(config.orientation == 2) {
-            setContentView(R.layout.directory_wide);
-	}
+	setContentView(R.layout.directory);
 
 	list = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,
 					android.R.id.text1);
@@ -62,26 +70,46 @@ public class DirectoryBrowser extends Activity {
     @Override
     public void onConfigurationChanged(Configuration config) {
         super.onConfigurationChanged(config);
-	if(config.orientation == 1) {
-            setContentView(R.layout.directory);
-        } else if(config.orientation == 2) {
-            setContentView(R.layout.directory_wide);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+	menu.add(0, BACK_ID, 0, "Back")
+	    .setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM | MenuItem.SHOW_AS_ACTION_WITH_TEXT);
+	menu.add(0, ROOT_ID, 0, "Root")
+	    .setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM | MenuItem.SHOW_AS_ACTION_WITH_TEXT);
+	menu.add(0, CANCEL_ID, 0, "Cancel")
+	    .setIcon(R.drawable.ic_menu_close_clear_cancel)
+	    .setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM | MenuItem.SHOW_AS_ACTION_WITH_TEXT);
+	return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+	Intent intent;
+	switch (item.getItemId()) {
+	case BACK_ID:
+	    if(!path.equals(ROOT)) {
+		int ind = path.lastIndexOf("/");
+		path = path.substring(0, ind);
+		setDirView();
+	    }
+	    break;
+	case ROOT_ID:
+	    path = ROOT;
+	    setDirView();
+	    break;
+	case CANCEL_ID:
+	    setResult(0);
+	    finish();
+	    break;
 	}
-	setupUI();
-	setDirView();
+	return true;
     }
 
     public void setupUI() {
 	label = (TextView)findViewById(R.id.dir_label);
 	listView = (ListView)findViewById(R.id.dir_list);
-
-	Button b = (Button)findViewById(R.id.dir_back);
-	b.setOnClickListener(backListener);
-	b = (Button)findViewById(R.id.dir_root);
-	b.setOnClickListener(rootListener);
-	b = (Button)findViewById(R.id.dir_cancel);
-	b.setOnClickListener(cancelListener);
-
 	listView.setOnItemClickListener(listListener);
 	listView.setAdapter(list);
     }
@@ -133,29 +161,4 @@ public class DirectoryBrowser extends Activity {
 		}
 	    }
 	};
-
-    private OnClickListener backListener = new OnClickListener() {
-	    public void onClick(View v) {
-		if(!path.equals(ROOT)) {
-		    int ind = path.lastIndexOf("/");
-		    path = path.substring(0, ind);
-		    setDirView();
-		}
-	    }
-	};
-
-    private OnClickListener rootListener = new OnClickListener() {
-	    public void onClick(View v) {
-		path = ROOT;
-		setDirView();
-	    }
-	};
-
-    private OnClickListener cancelListener = new OnClickListener() {
-	    public void onClick(View v) {
-		setResult(0);
-		finish();
-	    }
-	};
-
 }
