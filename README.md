@@ -15,7 +15,7 @@ android update project -p .
 
 1. Clone this repository to a directory of your choice. This directory will be referred to as PROJ_HOME.
 
-2. Clone the Action Bar Sherlock project by Jake Wharton into a folder called abs_library in the directory PROJ_HOME resides in (NOT into PROJ_HOME itself). Run the update command in the abs_library folder. ABS can currently be found here https://github.com/JakeWharton/ActionBarSherlock.git - If you already have ABS somewhere on your computer, you can change the reference in PROJ_HOME/numberSliderGameLib/project.properties to point to its location.
+2. Download Action Bar Sherlock here:  http://actionbarsherlock.com/ and extract the contents of the library subfolder into a folder called abs_library in the directory PROJ_HOME resides in (NOT into PROJ_HOME itself). Run the update command in the abs_library folder. If you already have ABS somewhere on your computer, you can change the reference in PROJ_HOME/numberSliderGameLib/project.properties to point to its location.
 
 3. cd into PROJ_HOME/numberSliderGameLib/gridlayout/ and run the update command.
 
